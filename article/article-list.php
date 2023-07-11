@@ -34,7 +34,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             <form action="article_search.php">
                 <div class="row gx-2">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="輸入關鍵字搜尋文章" name="name">
+                        <input type="text" class="form-control" placeholder="輸入關鍵字搜尋文章" name="title">
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-warning" type="submit">搜尋</button>
