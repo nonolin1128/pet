@@ -5,7 +5,11 @@ FROM article
 JOIN article_category ON article.category = article_category.id";;
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
-// $article_count = $result->num_rows;
+
+
+$sqlCategory = "SELECT * FROM article_category ORDER BY id ASC";
+$resultCate = $conn->query($sqlCategory);
+$cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
@@ -30,6 +34,27 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             <h1>文章列表頁</h1>
         </div>
         <div class="pb-5">
+            <div class="py-2">
+                <ul class="nav nav-underline mb-3">
+                    <li class="nav-item">
+                        <a class="nav-link 
+                    <?php
+                    if (!isset($_GET["category"])) echo "active"
+                    ?>" aria-current="page" href="product-list.php">全部</a>
+                    </li>
+                    <?php foreach ($cateRows as $category) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link 
+                        <?php
+                        if (isset(
+                            $_GET["category"]
+                        ) && $_GET["category"] == $category["id"]) echo "active";
+
+                        ?>" href="product-list.php?category=<?= $category["id"] ?>"><?= $category["name"] ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
             <form action="article_search.php">
                 <div class="row gx-2">
                     <div class="col">
@@ -40,6 +65,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     </div>
                 </div>
             </form>
+            <div class="col-1 pt-4">
+                <a class="btn btn-warning" href="create-article.php">新增文章</a>
+            </div>
         </div>
         <table class="table table-bordered">
             <thead>

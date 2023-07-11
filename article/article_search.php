@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_GET["keyword"])) {
+if (!empty($_GET["keyword"])) {
   $keyword = $_GET["keyword"];
 
   require_once("../db_connect.php");
@@ -15,6 +15,7 @@ if (isset($_GET["keyword"])) {
   $article_count = $result->num_rows;
 } else {
   $article_count = 0;
+  $keyword = "";
 }
 
 ?>
