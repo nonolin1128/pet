@@ -27,8 +27,20 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 <body>
     <div class="container">
-        <div class="nav py-5">
+        <div class="nav py-4">
             <h1>文章列表頁</h1>
+        </div>
+        <div class="pb-5">
+            <form action="article_search.php">
+                <div class="row gx-2">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="輸入關鍵字搜尋文章" name="name">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-warning" type="submit">搜尋</button>
+                    </div>
+                </div>
+            </form>
         </div>
         <table class="table table-bordered">
             <thead>
@@ -51,7 +63,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         <td><?= $row["abstract"] ?></td>
                         <td><?= $row["published_date"] ?></td>
                         <td><?= $row["created_date"] ?></td>
-                        <td><a href="article.php?id=<?= $row["id"] ?>" class="btn btn-info">編輯</a></td>
+                        <td><a href="article.php?id=<?= $row["id"] ?>" class="btn btn-warning">編輯</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
