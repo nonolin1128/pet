@@ -1,3 +1,16 @@
+<?php
+require_once("../db_connect.php");
+$sql = "SELECT article.id, article.title, article.abstract, article.published_date, article.created_date, article_category.name 
+FROM article
+JOIN article_category ON article.category = article_category.id";
+;
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+// $article_count = $result->num_rows;
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -14,10 +27,14 @@
 
 <body>
     <div class="container">
+        <div class="nav py-5">
+            <h1>文章列表頁</h1>
+        </div>
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>文章編號</th>
+                    <th>文章類別</th>
                     <th>文章標題</th>
                     <th>文章摘要</th>
                     <th>發佈時間</th>
@@ -25,6 +42,20 @@
                     <th></th>
                 </tr>
             </thead>
+            <tbody>
+                <?php foreach ($rows as $row) : ?>
+                    <tr>
+                        <td><?= $row["id"] ?></td>
+                        <td><?= $row["name"] ?></td>
+                        <td><?= $row["title"] ?></td>
+                        <td><?= $row["abstract"] ?></td>
+                        <td><?= $row["published_date"] ?></td>
+                        <td><?= $row["created_date"] ?></td>
+                        <td><a href="article.php?id=<?= $row["id"] ?>" class="btn btn-info">編輯</a></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 </body>
 
