@@ -2,8 +2,7 @@
 require_once("../db_connect.php");
 $sql = "SELECT article.id, article.title, article.abstract, article.published_date, article.created_date, article_category.name 
 FROM article
-JOIN article_category ON article.category = article_category.id";
-;
+JOIN article_category ON article.category = article_category.id";;
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 // $article_count = $result->num_rows;
@@ -34,7 +33,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             <form action="article_search.php">
                 <div class="row gx-2">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="輸入關鍵字搜尋文章" name="title">
+                        <input type="text" class="form-control" placeholder="輸入關鍵字搜尋文章" name="keyword">
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-warning" type="submit">搜尋</button>
