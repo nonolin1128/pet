@@ -40,7 +40,7 @@ $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
                         <a class="nav-link 
                     <?php
                     if (!isset($_GET["category"])) echo "active"
-                    ?>" aria-current="page" href="product-list.php">全部</a>
+                    ?>" aria-current="page" href="article-list.php">全部</a>
                     </li>
                     <?php foreach ($cateRows as $category) : ?>
                         <li class="nav-item">
@@ -50,7 +50,7 @@ $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
                             $_GET["category"]
                         ) && $_GET["category"] == $category["id"]) echo "active";
 
-                        ?>" href="product-list.php?category=<?= $category["id"] ?>"><?= $category["name"] ?></a>
+                        ?>" href="article-list.php?category=<?= $category["id"] ?>"><?= $category["name"] ?></a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
