@@ -43,6 +43,9 @@ $articleImages = $resultImages->fetch_all(MYSQLI_ASSOC);
         <div>
             <?= $article["content"] ?>">
         </div>
+        <div class="nav py-4">
+            <a class="btn btn-warning" href="article-edit.php?id=<?= $article["id"] ?>">編輯</a>
+        </div>
     </div>
 
 </body>

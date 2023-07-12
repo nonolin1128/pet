@@ -1,3 +1,6 @@
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -8,8 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS v5.2.1 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
 </head>
 
@@ -19,21 +21,36 @@
       <a class="btn btn-warning" href="article-list.php">回文章列表</a>
     </div>
     <form action="doCreate.php" method="post">
-        <div class="mb-2">
-            <label for="">文章標題</label>
-            <input type="text" class="form-control" name="title">
-        </div>
-        <div class="mb-2">
-            <label for="">文章摘要</label>
-            <input type="text" class="form-control" name="abstract">
-        </div>
-        <div class="mb-2">
-            <label for="">文章內容</label>
-            <input type="text" class="form-control" name="content">
-        </div>
-        <button class="btn btn-info" type="submit">送出</button>
+      <div class="btn-group">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Action
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </div>
+      <div class="mb-2">
+        <label for="">文章標題</label>
+        <input type="text" class="form-control" name="title">
+      </div>
+      <div class="mb-2">
+        <label for="">文章摘要</label>
+        <input type="text" class="form-control" name="abstract">
+      </div>
+      <div class="mb-2">
+        <label for="">文章內容</label>
+        <input type="text" class="form-control" name="content">
+      </div>
+      <button class="btn btn-info" type="submit">送出</button>
     </form>
   </div>
+
+  <?php include("../js.php") ?>
+  <script>
+
+  </script>
 </body>
 
 </html>

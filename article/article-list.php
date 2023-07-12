@@ -90,7 +90,7 @@ $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
                         <td><?= $row["abstract"] ?></td>
                         <td><?= $row["published_date"] ?></td>
                         <td><?= $row["created_date"] ?></td>
-                        <td><a href="article.php?id=<?= $row["id"] ?>" class="btn btn-warning">編輯</a></td>
+                        <td><a href="article.php?id=<?= $row["id"] ?>" class="btn btn-warning">顯示</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
