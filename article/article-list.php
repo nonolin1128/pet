@@ -141,10 +141,10 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     <div class="btn-group">
                         <a href="article-list.php?page=<?= $page ?>&type=1" class="btn btn-warning border <?php
                                                                                                             if ($type == 1) echo "active";
-                                                                                                            ?>">新到舊 <i class="fa-sharp fa-solid fa-sort-down"></i></a>
+                                                                                                            ?>">舊到新 <i class="fa-sharp fa-solid fa-sort-down"></i></a>
                         <a href="article-list.php?page=<?= $page ?>&type=2" class="btn btn-warning border <?php
                                                                                                             if ($type == 2) echo "active";
-                                                                                                            ?>">舊到新 <i class="fa-sharp fa-solid fa-sort-up"></i></a>
+                                                                                                            ?>">新到舊 <i class="fa-sharp fa-solid fa-sort-up"></i></a>
                     </div>
                         
                 </div>

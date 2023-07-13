@@ -11,10 +11,8 @@ $abstract=$_POST["abstract"];
 $content=$_POST["content"];
 $category=$_POST["category"];
 $now=date('Y-m-d H:i:s');
-$published_date=$_POST["published_date"];
-
-// echo "$name, $phone, $email";
-$sql="INSERT INTO article (title, abstract, content, category, created_date, published_date) VALUES ('$title', '$abstract', '$content','$category', '$now', '$published_date')";
+$valid = 1;
+$sql="INSERT INTO article (title, abstract, content, category, created_date, valid) VALUES ('$title', '$abstract', '$content','$category', '$now','$valid')";
 
 // echo $sql;
 

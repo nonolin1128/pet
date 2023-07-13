@@ -31,12 +31,19 @@ $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
         <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           請選取文章類別
         </button>
+        <input type="hidden" name="category" value="">
         <ul class="dropdown-menu">
           <?php foreach ($cateRows as $category) : ?>
             <li><a class="dropdown-item" href="#" data-category="<?= $category["id"] ?>"><?= $category["name"] ?></a></li>
           <?php endforeach; ?>
         </ul>
       </div>
+      <form action="doUpload.php" method="post" enctype="multipart/form-data">
+        <div class="mb-2">
+            <label for="">選取圖片</label>
+            <input type="file" name="file" class="form-control" required>
+        </div>
+      </form>
       <div class="mb-2">
         <label for="">文章標題</label>
         <input type="text" class="form-control" name="title">
@@ -61,11 +68,11 @@ $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
 
   <?php include("../js.php") ?>
   <script>
-    document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("DOMContentLoaded", function() {
       var dropdownToggle = document.querySelector(".dropdown-toggle");
       var dropdownMenu = document.querySelector(".dropdown-menu");
 
-      dropdownMenu.addEventListener("click", function(e){
+      dropdownMenu.addEventListener("click", function(e) {
         e.preventDefault();
         var selectedOption = e.target;
 

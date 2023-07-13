@@ -21,6 +21,14 @@ $row = $result->fetch_assoc();
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        .height200{
+            height: 200px;
+        }
+        .height500{
+            height: 500px;
+        }
+    </style>
 </head>
 
 <body>
@@ -43,7 +51,8 @@ $row = $result->fetch_assoc();
     </div>
 
     <div class="container">
-        <form action="doUpdate.php" method="post">
+        <h1 class="pt-5">文章修改頁</h1>
+        <form class="py-5" action="doUpdate.php" method="post">
             <table class="table table-bordered ">
                 <input type="hidden" name="id" value="<?= $row["id"] ?>">
                 <tr>
@@ -55,13 +64,13 @@ $row = $result->fetch_assoc();
                 <tr>
                     <th>文章摘要</th>
                     <td>
-                        <textarea type="text" class="form-control" name="abstract"><?= $row["abstract"] ?></textarea>
+                        <textarea type="text" class="form-control height200" name="abstract"><?= $row["abstract"] ?></textarea>
                     </td>
                 </tr>
                 <tr>
                     <th>文章內容</th>
                     <td>
-                        <textarea type="text" class="form-control" name="content"><?= $row["content"] ?></textarea>
+                        <textarea type="text" class="form-control height500" name="content"><?= $row["content"] ?></textarea>
                     </td>
                 </tr>
                 <tr>
