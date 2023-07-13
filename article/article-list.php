@@ -1,8 +1,30 @@
 <?php
 require_once("../db_connect.php");
-$sql = "SELECT article.id, article.title, article.abstract, article.published_date, article.created_date, article_category.name 
-FROM article
-JOIN article_category ON article.category = article_category.id";;
+
+$page = $_GET["page"] ?? 1;
+$type=$_GET["type"] ?? 1;
+
+$sqlTotal = "SELECT id FROM article";
+$resultTotal = $conn->query($sqlTotal);
+$totalArticle = $resultTotal->num_rows;
+
+$perPage = 5;
+$startItem = ($page - 1) * $perPage;
+$totalPage=ceil($totalArticle/$perPage);
+
+if($type==1){
+    $sql = "SELECT article.id, article.title, article.abstract, article.published_date, article.created_date, article_category.name FROM article WHERE valid=1 ORDER BY article.id ASC LIMIT $startItem, $perPage"; 
+}elseif($type==2){
+    $sql = "SELECT article.id, article.title, article.abstract, article.published_date, article.created_date, article_category.name FROM article WHERE valid=1 ORDER BY article.id DESC LIMIT $startItem, $perPage"; 
+}else{
+    header("location:../404.php");
+}
+
+
+$sql = "SELECT article.id, article.title, article.abstract, article.published_date, article.created_date, article_category.name
+FROM article 
+JOIN article_category ON article.category = article_category.id
+ORDER BY id ASC LIMIT $startItem, $perPage";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -10,6 +32,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 $sqlCategory = "SELECT * FROM article_category ORDER BY id ASC";
 $resultCate = $conn->query($sqlCategory);
 $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
+
+
+
+
+
 
 ?>
 
@@ -25,7 +52,7 @@ $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="../css.php">
 </head>
 
 <body>
@@ -68,6 +95,16 @@ $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
             <div class="col-1 pt-4">
                 <a class="btn btn-warning" href="create-article.php">新增文章</a>
             </div>
+            <div class="py-2 d-flex justify-content-end">
+            <div class="btn-group">
+                <a href="article-list.php?page=<?= $page ?>&type=1" class="btn btn-warning border <?php
+                if($type==1)echo "active";
+                ?>">新到舊 <i class="fa-sharp fa-solid fa-sort-down"></i></a>
+                <a href="article-list.php?page=<?= $page ?>&type=2" class="btn btn-warning border <?php
+                if($type==2)echo "active";
+                ?>">舊到新 <i class="fa-sharp fa-solid fa-sort-up"></i></a>
+            </div>
+        </div>
         </div>
         <table class="table table-bordered">
             <thead>
@@ -95,7 +132,20 @@ $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <?php for($i=1; $i<=$totalPage; $i++): ?>
+                <li class="page-item <?php
+                    if($i==$page)echo "active";
+                    ?>"><a class="page-link " href="article-list.php?page=<?=$i?>&type=<?=$type?>"><?=$i?></a></li>
+                <?php endfor; ?>
+            </ul>
+        </nav>
     </div>
+    <?php include("../js.php") ?>
+  <script>
+
+  </script>
 </body>
 
 </html>

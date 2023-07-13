@@ -74,7 +74,7 @@ $row = $result->fetch_assoc();
                     <button class="btn btn-warning" type="submit">儲存</button>
                     <a class="btn btn-warning" href="article.php?id=<?= $row["id"] ?>">取消</a>
                 </div>
-                <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">刪除</button>
+                <button action="doDelete.php" class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">刪除</button>
             </div>
         </form>
     </div>
