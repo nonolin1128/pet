@@ -1,5 +1,10 @@
+<?php
+require_once("../db_connect.php");
+$sqlCategory = "SELECT * FROM article_category ORDER BY id ASC";
+$resultCate = $conn->query($sqlCategory);
+$cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
 
-
+?>
 
 <!doctype html>
 <html lang="en">
@@ -26,9 +31,9 @@
           Action
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <?php foreach ($cateRows as $category) : ?>
+          <li><a class="dropdown-item" href="#"><?=$category?></a></li>
+          <?php endforeach; ?>
         </ul>
       </div>
       <div class="mb-2">
@@ -37,11 +42,11 @@
       </div>
       <div class="mb-2">
         <label for="">文章摘要</label>
-        <input type="text" class="form-control" name="abstract">
+        <textarea name="abstract" id="" cols="30" rows="10"></textarea>
       </div>
       <div class="mb-2">
         <label for="">文章內容</label>
-        <input type="text" class="form-control" name="content">
+        <textarea name="content" id="" cols="30" rows="10"></textarea>
       </div>
       <button class="btn btn-info" type="submit">送出</button>
     </form>

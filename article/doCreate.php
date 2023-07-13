@@ -9,10 +9,12 @@ require_once("../db_connect.php");
 $title=$_POST["title"];
 $abstract=$_POST["abstract"];
 $content=$_POST["content"];
+$category=$_POST["category"];
 $now=date('Y-m-d H:i:s');
+$published_date=$_POST["published_date"];
 
 // echo "$name, $phone, $email";
-$sql="INSERT INTO article (title, abstract, content, created_date) VALUES ('$title', '$abstract', '$content', '$now')";
+$sql="INSERT INTO article (title, abstract, content, category, created_date, published_date) VALUES ('$title', '$abstract', '$content','$category', '$now', '$published_date')";
 
 // echo $sql;
 

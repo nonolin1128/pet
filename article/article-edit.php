@@ -71,17 +71,16 @@ $row = $result->fetch_assoc();
             </table>
             <div class="py-2 d-flex justify-content-between">
                 <div>
-                    <button class="btn btn-warning" type="submit">儲存</button>
+                    <button class="btn btn-warning" type="submit" href="">儲存</button>
                     <a class="btn btn-warning" href="article.php?id=<?= $row["id"] ?>">取消</a>
                 </div>
                 <button action="doDelete.php" class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">刪除</button>
             </div>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
+
 </body>
 
 </html>
