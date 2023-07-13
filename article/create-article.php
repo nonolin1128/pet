@@ -26,7 +26,7 @@ $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
     <div class="py-2">
       <a class="btn btn-warning" href="article-list.php">回文章列表</a>
     </div>
-    <form action="doCreate.php" method="post">
+    <form action="doCreate.php" method="post" enctype="multipart/form-data">
       <div class="btn-group">
         <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           請選取文章類別
@@ -38,12 +38,10 @@ $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
           <?php endforeach; ?>
         </ul>
       </div>
-      <form action="doUpload.php" method="post" enctype="multipart/form-data">
         <div class="mb-2">
             <label for="">選取圖片</label>
-            <input type="file" name="file" class="form-control" required>
+            <input type="file" name="image" class="form-control" required>
         </div>
-      </form>
       <div class="mb-2">
         <label for="">文章標題</label>
         <input type="text" class="form-control" name="title">

@@ -8,6 +8,12 @@ require_once("../db_connect.php");
 $sql = "SELECT * FROM article WHERE id = $id ";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
+
+$sqlImages = "SELECT * FROM article_images 
+WHERE article_id = '$id'
+ORDER BY id DESC";
+$resultImages = $conn->query($sqlImages);
+$articleImages = $resultImages->fetch_assoc();
 ?>
 
 <!doctype html>
@@ -22,10 +28,11 @@ $row = $result->fetch_assoc();
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <style>
-        .height200{
+        .height200 {
             height: 200px;
         }
-        .height500{
+
+        .height500 {
             height: 500px;
         }
     </style>
@@ -52,13 +59,23 @@ $row = $result->fetch_assoc();
 
     <div class="container">
         <h1 class="pt-5">文章修改頁</h1>
-        <form class="py-5" action="doUpdate.php" method="post">
+        <div class="nav py-4">
+            <a class="btn btn-warning" href="article-list.php">回文章列表</a>
+        </div>
+        <form class="py-5" action="doUpdate.php" method="post" enctype="multipart/form-data">
             <table class="table table-bordered ">
                 <input type="hidden" name="id" value="<?= $row["id"] ?>">
                 <tr>
                     <th>文章標題</th>
                     <td>
                         <input type="text" class="form-control" value="<?= $row["title"] ?>" name="title">
+                    </td>
+                </tr>
+                <tr>
+                    <th>文章首圖</th>
+                    <td>
+                        <img src="../article_images/<?= $articleImages["img"] ?>" alt="">
+                        <input type="file" name="image" class="form-control" required>
                     </td>
                 </tr>
                 <tr>

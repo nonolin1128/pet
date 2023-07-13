@@ -172,6 +172,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         <td><?= $row["published_date"] ?></td>
                         <td><?= $row["created_date"] ?></td>
                         <td><a href="article.php?id=<?= $row["id"] ?>" class="btn btn-warning">顯示</a></td>
+                        <td><a href="article-edit.php?id=<?= $row["id"] ?>" class="btn btn-secondary">編輯</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

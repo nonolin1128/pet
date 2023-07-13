@@ -12,10 +12,7 @@ $sqlImages = "SELECT * FROM article_images
 WHERE article_id = '$id'
 ORDER BY id DESC";
 $resultImages = $conn->query($sqlImages);
-$articleImages = $resultImages->fetch_all(MYSQLI_ASSOC);
-
-var_dump($articleImages["img"]);
-var_dump($articleImages);
+$articleImages = $resultImages->fetch_assoc();
 ?>
 
 
