@@ -1,6 +1,6 @@
 <?php
 
-if(!isset($_POST["name"])){
+if(!isset($_POST["title"])){
     die("請依正常管道到此頁");
 }
 

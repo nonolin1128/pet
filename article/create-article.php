@@ -1,5 +1,6 @@
 <?php
 require_once("../db_connect.php");
+
 $sqlCategory = "SELECT * FROM article_category ORDER BY id ASC";
 $resultCate = $conn->query($sqlCategory);
 $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
@@ -28,11 +29,11 @@ $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
     <form action="doCreate.php" method="post">
       <div class="btn-group">
         <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          Action
+          請選取文章類別
         </button>
         <ul class="dropdown-menu">
-        <?php foreach ($cateRows as $category) : ?>
-          <li><a class="dropdown-item" href="#"><?=$category?></a></li>
+          <?php foreach ($cateRows as $category) : ?>
+            <li><a class="dropdown-item" href="#" data-category="<?= $category["id"] ?>"><?= $category["name"] ?></a></li>
           <?php endforeach; ?>
         </ul>
       </div>
@@ -52,9 +53,30 @@ $cateRows = $resultCate->fetch_all(MYSQLI_ASSOC);
     </form>
   </div>
 
+
+
+
+
+
+
   <?php include("../js.php") ?>
   <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      var dropdownToggle = document.querySelector(".dropdown-toggle");
+      var dropdownMenu = document.querySelector(".dropdown-menu");
 
+      dropdownMenu.addEventListener("click", function(e){
+        e.preventDefault();
+        var selectedOption = e.target;
+
+        var categoryName = selectedOption.textContent;
+
+        dropdownToggle.textContent = categoryName;
+
+        var categoryID = selectedOption.dataset.category;
+        document.querySelector('input[name="category"]').value = categoryID;
+      });
+    });
   </script>
 </body>
 
